@@ -1,0 +1,12 @@
+#!/bin/sh
+TO_ADDRESS="<email recipients>"
+SUBJECT="SERVER FAILURE"
+BODY="SERVER IS DOWNNNN"
+
+if curl -I "<enter ip here>"; then
+  echo "$TARGET alive and web site is up"
+  echo "Links are alive" | mail -s "Testing URL" ${TO_ADDRESS}
+else
+  echo "$TARGET offline or web server problem"
+  echo ${BODY}  | mail -s ${SUBJECT} ${TO_ADDRESS}
+fi
