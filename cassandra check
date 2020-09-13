@@ -1,0 +1,5 @@
+mode=$(nodetool netstats | grep 'Mode')
+if [[ $mode != *"NORMAL"* ]]; then
+  echo "Aborting backup!"
+  exit 1
+fi
