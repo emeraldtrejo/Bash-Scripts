@@ -1,0 +1,4 @@
+#!/bin/sh
+if [ "$(systemctl is-active docker)" = "active" ]; then echo "is alive :)" ;
+else "docker is down" | mail -s "Docker Image XXX is DOWN" user@domain.com
+fi
