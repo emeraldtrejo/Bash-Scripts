@@ -1,15 +1,17 @@
-#!/bin/sh
+#!/bin/bash
 
 #parse through txt files to check listed ip addresses
 for FILE in /path/to/folder/*.txt;do
     date
     cat $FILE |  while read output
     do
+        f="$(basename -- $FILE .txt)"
         ping -c 1 "$output" > /dev/null
         if [ $? -eq 0 ]; then
-        echo "node $output is up"
+        echo "node $output is up for $f"
         else
-        echo "node $output is down"
+        echo "node $output is down for $f"
+        echo "$output is Down for $f. Take Immediate Action" | mail -s "$output is DOWN for $f" email@domain.com
         fi
     done
 done
